@@ -1,0 +1,21 @@
+{
+  "kind": "benchmark",
+  "name": "inventory_penalty_sum",
+  "input_kind": "ocaml",
+  "source_path": "source/ocaml/inventory_penalty_sum.ml",
+  "entry": "inventory_penalty_sum",
+  "baseline_name": "inventory_penalty_sum",
+  "scalar_args": {
+    "target": 0.0
+  },
+  "tensor_inputs": [
+    "pos"
+  ],
+  "result_kind": "scalar",
+  "description": "Quadratic deviation penalty from a target inventory level",
+  "application": "Inventory risk aggregation in market making and execution control",
+  "application_domain": "hft",
+  "workload_class": "inventory-risk-reduction",
+  "plot_scale_mode": "linear_and_log",
+  "capability_expected": "supported"
+}

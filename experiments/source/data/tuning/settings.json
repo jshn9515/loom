@@ -1,0 +1,8 @@
+{
+  "seed": 20260417,
+  "compile_probe_size": 4096,
+  "tuning_sizes": [65536, 1048576, 16777216],
+  "tuning_seed_offsets": [0, 17],
+  "autotune_config": "configs/triton/default-v1.json",
+  "optimizer_config": "configs/optimizations/current.json"
+}

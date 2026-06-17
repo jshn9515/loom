@@ -1,0 +1,5 @@
+(library
+ (name loom_tensorize)
+ (wrapped false)
+ (libraries loom_core)
+ (modules materialization_policy reduction_analysis tensor_passes tensorize validate))

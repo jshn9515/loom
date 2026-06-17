@@ -1,0 +1,21 @@
+{
+  "kind": "benchmark",
+  "name": "affine_score_reduce",
+  "input_kind": "ocaml",
+  "source_path": "source/ocaml/affine_score_reduce.ml",
+  "entry": "affine_score_reduce",
+  "baseline_name": "affine_score_reduce",
+  "scalar_args": {
+    "scale": 1.25,
+    "bias": -0.15,
+    "threshold": 0.2
+  },
+  "tensor_inputs": ["x"],
+  "result_kind": "scalar",
+  "description": "Affine transform, thresholding, and reduction fused into one score accumulation",
+  "application": "Inference-time score aggregation and thresholded feature pooling in ranking and signal scoring systems",
+  "application_domain": "ml-inference",
+  "workload_class": "affine-score-reduction",
+  "plot_scale_mode": "linear_and_log",
+  "capability_expected": "supported"
+}

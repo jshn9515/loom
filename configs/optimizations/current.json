@@ -1,0 +1,31 @@
+{
+  "version": 9,
+  "small_inline_nodes": 20,
+  "small_clone_nodes": 12,
+  "reduction_precombine_max_body_complexity": 20,
+  "single_block_reduction_threshold": 2048,
+  "reduction_stage_split_threshold": 65536,
+  "branchy_fusion_complexity_threshold": 6,
+  "pointwise_materialization_complexity_threshold": 5,
+  "materialize_multi_use_complexity_threshold": 4,
+  "reduction_stage_medium_threshold": 4096,
+  "reduction_stage_large_threshold": 131072,
+  "small_direct_reduction_threshold": 131072,
+  "small_partial_reduction_threshold": 262144,
+  "small_reduction_program_count": 4,
+  "branchy_small_reduction_threshold": 131072,
+  "branchy_small_reduction_program_count": 4,
+  "reduction_body_cse_min_occurrences": 2,
+  "reduction_materialize_complexity_threshold": 5,
+  "reduction_late_fusion_complexity_threshold": 8,
+  "elementwise_buckets": [
+    { "max_n": 131072, "block_size": 256, "num_warps": 4 },
+    { "max_n": 2097152, "block_size": 512, "num_warps": 8 },
+    { "max_n": 2147483647, "block_size": 1024, "num_warps": 8 }
+  ],
+  "reduction_buckets": [
+    { "max_n": 131072, "block_size": 256, "num_warps": 4 },
+    { "max_n": 2097152, "block_size": 512, "num_warps": 8 },
+    { "max_n": 2147483647, "block_size": 1024, "num_warps": 8 }
+  ]
+}

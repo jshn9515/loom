@@ -1,0 +1,21 @@
+{
+  "kind": "benchmark",
+  "name": "quote_filter",
+  "input_kind": "ocaml",
+  "source_path": "source/ocaml/quote_filter.ml",
+  "entry": "quote_filter",
+  "baseline_name": "quote_filter",
+  "scalar_args": {
+    "threshold": 0.05
+  },
+  "tensor_inputs": [
+    "bid",
+    "ask"
+  ],
+  "result_kind": "tensor",
+  "description": "Spread-based quote filtering with scalar threshold control",
+  "application": "Fast quote sanitation and spread-triggered routing logic",
+  "application_domain": "hft",
+  "workload_class": "quote-spread-filter",
+  "capability_expected": "supported"
+}

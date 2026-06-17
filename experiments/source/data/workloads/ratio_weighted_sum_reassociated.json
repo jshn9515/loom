@@ -1,0 +1,20 @@
+{
+  "kind": "benchmark",
+  "name": "ratio_weighted_sum_reassociated",
+  "input_kind": "ocaml",
+  "source_path": "source/ocaml/ratio_weighted_sum_reassociated.ml",
+  "entry": "ratio_weighted_sum_reassociated",
+  "baseline_name": "ratio_weighted_sum",
+  "scalar_args": {
+    "scale": 0.85,
+    "epsilon": 0.125
+  },
+  "tensor_inputs": ["x", "y"],
+  "result_kind": "scalar",
+  "description": "Held-out ratio reduction with reassociated denominator and helper binding",
+  "application": "Generalization check for ratio-heavy reductions expressed through equivalent scalar structure",
+  "application_domain": "hft",
+  "workload_class": "generalization-ratio-reduction",
+  "plot_scale_mode": "linear_and_log",
+  "capability_expected": "supported"
+}

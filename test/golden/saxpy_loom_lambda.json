@@ -1,0 +1,39 @@
+{
+  "entry": "saxpy",
+  "params": [
+    { "name": "a", "type": "float" },
+    { "name": "x", "type": "tensor1<f32>" },
+    { "name": "y", "type": "tensor1<f32>" }
+  ],
+  "return_type": "tensor1<f32>",
+  "body": {
+    "kind": "tensor-prim",
+    "op": "tensor-map2",
+    "args": [
+      {
+        "kind": "lambda",
+        "params": [
+          { "name": "xi", "type": "float" },
+          { "name": "yi", "type": "float" }
+        ],
+        "body": {
+          "kind": "prim",
+          "op": "fadd",
+          "args": [
+            {
+              "kind": "prim",
+              "op": "fmul",
+              "args": [
+                { "kind": "var", "name": "a", "type": "float" },
+                { "kind": "var", "name": "xi", "type": "float" }
+              ]
+            },
+            { "kind": "var", "name": "yi", "type": "float" }
+          ]
+        }
+      },
+      { "kind": "var", "name": "x", "type": "tensor1<f32>" },
+      { "kind": "var", "name": "y", "type": "tensor1<f32>" }
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "kind": "benchmark",
+  "name": "mse_sum",
+  "input_kind": "ocaml",
+  "source_path": "source/ocaml/mse_sum.ml",
+  "entry": "mse_sum",
+  "baseline_name": "mse_sum",
+  "scalar_args": {},
+  "tensor_inputs": [
+    "x",
+    "y"
+  ],
+  "result_kind": "scalar",
+  "description": "Squared error accumulation over two vectors",
+  "application": "Mean-squared-error style loss accumulation in model training and calibration",
+  "application_domain": "ml-training",
+  "workload_class": "loss-reduction",
+  "plot_scale_mode": "linear_and_log",
+  "capability_expected": "supported"
+}

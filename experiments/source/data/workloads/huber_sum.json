@@ -1,0 +1,22 @@
+{
+  "kind": "benchmark",
+  "name": "huber_sum",
+  "input_kind": "ocaml",
+  "source_path": "source/ocaml/huber_sum.ml",
+  "entry": "huber_sum",
+  "baseline_name": "huber_sum",
+  "scalar_args": {
+    "delta": 1.0
+  },
+  "tensor_inputs": [
+    "x",
+    "y"
+  ],
+  "result_kind": "scalar",
+  "description": "Robust Huber-style loss accumulation with nested scalar control flow",
+  "application": "Robust regression and noise-tolerant residual scoring",
+  "application_domain": "ml-training",
+  "workload_class": "robust-loss",
+  "plot_scale_mode": "linear_and_log",
+  "capability_expected": "supported"
+}

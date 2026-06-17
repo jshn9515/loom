@@ -1,0 +1,20 @@
+{
+  "kind": "benchmark",
+  "name": "dot_pipeline",
+  "input_kind": "ocaml",
+  "source_path": "source/ocaml/dot_pipeline.ml",
+  "entry": "dot_pipeline",
+  "baseline_name": "dot",
+  "scalar_args": {},
+  "tensor_inputs": [
+    "x",
+    "y"
+  ],
+  "result_kind": "scalar",
+  "description": "Local helper decomposition of map2 plus reduce_sum normalized into a dot product",
+  "application": "Pipeline-style frontend code that factors tensor algebra into small reusable helpers",
+  "application_domain": "scientific-computing",
+  "workload_class": "dot-product",
+  "plot_scale_mode": "linear_and_log",
+  "capability_expected": "supported"
+}

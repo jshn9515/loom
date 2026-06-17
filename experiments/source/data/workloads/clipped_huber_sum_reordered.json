@@ -1,0 +1,20 @@
+{
+  "kind": "benchmark",
+  "name": "clipped_huber_sum_reordered",
+  "input_kind": "ocaml",
+  "source_path": "source/ocaml/clipped_huber_sum_reordered.ml",
+  "entry": "clipped_huber_sum_reordered",
+  "baseline_name": "clipped_huber_sum",
+  "scalar_args": {
+    "delta": 1.5,
+    "cap": 4.0
+  },
+  "tensor_inputs": ["x", "y"],
+  "result_kind": "scalar",
+  "description": "Held-out clipped Huber reduction with equivalent arithmetic and reversed comparisons",
+  "application": "Generalization check for robust loss reductions expressed through local helper functions",
+  "application_domain": "ml-training",
+  "workload_class": "generalization-robust-clipped-loss",
+  "plot_scale_mode": "linear_and_log",
+  "capability_expected": "supported"
+}

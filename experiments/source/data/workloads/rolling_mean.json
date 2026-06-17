@@ -1,0 +1,9 @@
+{
+  "kind": "capability",
+  "name": "rolling_mean",
+  "input_kind": "ocaml",
+  "source_path": "source/ocaml/limitations/rolling_mean.ml",
+  "entry": "bad",
+  "description": "Windowed recurrence that cannot be lowered into current TensorIR",
+  "capability_expected": "unsupported"
+}

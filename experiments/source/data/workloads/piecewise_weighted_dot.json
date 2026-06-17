@@ -1,0 +1,20 @@
+{
+  "kind": "benchmark",
+  "name": "piecewise_weighted_dot",
+  "input_kind": "ocaml",
+  "source_path": "source/ocaml/piecewise_weighted_dot.ml",
+  "entry": "piecewise_weighted_dot",
+  "baseline_name": "piecewise_weighted_dot",
+  "scalar_args": {
+    "weight_pos": 1.1,
+    "weight_neg": 0.65
+  },
+  "tensor_inputs": ["x", "y"],
+  "result_kind": "scalar",
+  "description": "Branchy weighted dot product with separate positive and negative-path coefficients",
+  "application": "Piecewise feature scoring and sign-sensitive similarity aggregation in scientific and quantitative pipelines",
+  "application_domain": "scientific-computing",
+  "workload_class": "piecewise-weighted-dot",
+  "plot_scale_mode": "linear_and_log",
+  "capability_expected": "supported"
+}

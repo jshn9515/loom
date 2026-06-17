@@ -1,0 +1,19 @@
+{
+  "kind": "benchmark",
+  "name": "l2_norm_sq",
+  "input_kind": "ocaml",
+  "source_path": "source/ocaml/l2_norm_sq.ml",
+  "entry": "l2_norm_sq",
+  "baseline_name": "l2_norm_sq",
+  "scalar_args": {},
+  "tensor_inputs": [
+    "x"
+  ],
+  "result_kind": "scalar",
+  "description": "Elementwise square followed by reduction",
+  "application": "Norm accumulation for loss terms, diagnostics, and similarity scoring",
+  "application_domain": "scientific-computing",
+  "workload_class": "reduction-norm",
+  "plot_scale_mode": "linear_and_log",
+  "capability_expected": "supported"
+}

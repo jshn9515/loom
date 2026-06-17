@@ -1,0 +1,21 @@
+{
+  "kind": "benchmark",
+  "name": "signal_clip_reduce_reassociated",
+  "input_kind": "ocaml",
+  "source_path": "source/ocaml/signal_clip_reduce_reassociated.ml",
+  "entry": "signal_clip_reduce_reassociated",
+  "baseline_name": "signal_clip_reduce",
+  "scalar_args": {
+    "scale": 1.4,
+    "epsilon": 0.001,
+    "clip": 0.85
+  },
+  "tensor_inputs": ["bid", "ask"],
+  "result_kind": "scalar",
+  "description": "Held-out clipped order-book signal reduction with reassociated arithmetic and explicit negative clip",
+  "application": "Generalization check for clipped market-feature reductions written with helper bindings",
+  "application_domain": "hft",
+  "workload_class": "generalization-signal-reduction",
+  "plot_scale_mode": "linear_and_log",
+  "capability_expected": "supported"
+}

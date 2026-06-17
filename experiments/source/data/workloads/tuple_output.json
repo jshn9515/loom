@@ -1,0 +1,9 @@
+{
+  "kind": "capability",
+  "name": "tuple_output",
+  "input_kind": "ocaml",
+  "source_path": "source/ocaml/limitations/tuple_output.ml",
+  "entry": "bad",
+  "description": "Tuple output in staged region",
+  "capability_expected": "unsupported"
+}

@@ -1,0 +1,20 @@
+{
+  "kind": "benchmark",
+  "name": "scaled_book_signal",
+  "input_kind": "ocaml",
+  "source_path": "source/ocaml/scaled_book_signal.ml",
+  "entry": "scaled_book_signal",
+  "baseline_name": "scaled_book_signal",
+  "scalar_args": {
+    "scale": 1.75,
+    "epsilon": 0.001
+  },
+  "tensor_inputs": ["bid", "ask"],
+  "result_kind": "tensor",
+  "description": "Scaled microstructure imbalance signal from bid and ask vectors",
+  "application": "Order-book feature extraction and normalized imbalance signals in low-latency trading systems",
+  "application_domain": "hft",
+  "workload_class": "order-book-feature",
+  "plot_scale_mode": "linear_only",
+  "capability_expected": "supported"
+}

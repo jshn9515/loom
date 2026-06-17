@@ -1,0 +1,5 @@
+(library
+ (name loom_frontend_cpp)
+ (wrapped false)
+ (libraries loom_core unix yojson)
+ (modules cpp_frontend))

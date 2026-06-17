@@ -1,0 +1,5 @@
+(library
+ (name loom_backend_cuda_artifact)
+ (wrapped false)
+ (libraries loom_backend_cuda)
+ (modules package))

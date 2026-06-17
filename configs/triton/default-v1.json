@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "bucket_upper_bounds": [262144, 4194304],
+  "elementwise": {
+    "configs": [
+      { "block_size": 64, "num_warps": 2, "num_stages": 2 },
+      { "block_size": 128, "num_warps": 4, "num_stages": 2 },
+      { "block_size": 256, "num_warps": 4, "num_stages": 3 },
+      { "block_size": 512, "num_warps": 8, "num_stages": 4 },
+      { "block_size": 1024, "num_warps": 8, "num_stages": 5 }
+    ]
+  },
+  "reduction": {
+    "configs": [
+      { "block_size": 128, "num_warps": 4, "num_stages": 2 },
+      { "block_size": 256, "num_warps": 4, "num_stages": 2 },
+      { "block_size": 512, "num_warps": 4, "num_stages": 3 },
+      { "block_size": 1024, "num_warps": 8, "num_stages": 4 },
+      { "block_size": 1024, "num_warps": 8, "num_stages": 5 }
+    ]
+  }
+}

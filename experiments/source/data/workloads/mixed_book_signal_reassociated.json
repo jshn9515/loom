@@ -1,0 +1,21 @@
+{
+  "kind": "benchmark",
+  "name": "mixed_book_signal_reassociated",
+  "input_kind": "ocaml",
+  "source_path": "source/ocaml/mixed_book_signal_reassociated.ml",
+  "entry": "mixed_book_signal_reassociated",
+  "baseline_name": "mixed_book_signal",
+  "scalar_args": {
+    "scale": 1.5,
+    "epsilon": 1.0,
+    "threshold": 0.25
+  },
+  "tensor_inputs": ["bid", "ask"],
+  "result_kind": "tensor",
+  "description": "Held-out mixed order-book signal with reassociated denominator and guard spelling",
+  "application": "Generalization check for branchy order-book feature extraction expressed with helper bindings",
+  "application_domain": "hft",
+  "workload_class": "generalization-mixed-order-book-feature",
+  "plot_scale_mode": "linear_only",
+  "capability_expected": "supported"
+}

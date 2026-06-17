@@ -1,0 +1,14 @@
+.git/
+.agents/
+.codex
+.venv/
+.uv-cache/
+.container-cache/
+_build/
+build/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+experiments/_work/
+experiments/results/local/
+experiments/results/dgx/

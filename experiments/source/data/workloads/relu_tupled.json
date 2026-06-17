@@ -1,0 +1,19 @@
+{
+  "kind": "benchmark",
+  "name": "relu_tupled",
+  "input_kind": "ocaml",
+  "source_path": "source/ocaml/relu_tupled.ml",
+  "entry": "relu_tupled",
+  "baseline_name": "relu",
+  "scalar_args": {},
+  "tensor_inputs": [
+    "x"
+  ],
+  "result_kind": "tensor",
+  "description": "Tuple destructuring plus local helper function normalized into Tensor1.map",
+  "application": "Configuration-driven pointwise transforms with local scalar setup values",
+  "application_domain": "ml-inference",
+  "workload_class": "activation",
+  "plot_scale_mode": "linear_and_log",
+  "capability_expected": "supported"
+}

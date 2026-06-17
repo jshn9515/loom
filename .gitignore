@@ -1,0 +1,13 @@
+.venv/
+_build/
+build/
+__pycache__/
+*.py[cod]
+.DS_Store
+.pytest_cache/
+experiments/_work/
+experiments/artifacts/
+experiments/results/local/
+experiments/results/dgx/
+.container-cache/
+.codex

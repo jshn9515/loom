@@ -1,0 +1,5 @@
+(library
+ (name loom_core)
+ (wrapped false)
+ (libraries compiler-libs.common yojson)
+ (modules diagnostic front_ir kernel_plan kernel_plan_common loomLambda optimization_config optimization_types optimizations pointwise_plan reduction_plan storage_pack tensor_ir loom_types))

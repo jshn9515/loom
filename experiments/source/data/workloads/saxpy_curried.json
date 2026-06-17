@@ -1,0 +1,21 @@
+{
+  "kind": "benchmark",
+  "name": "saxpy_curried",
+  "input_kind": "ocaml",
+  "source_path": "source/ocaml/saxpy_curried.ml",
+  "entry": "saxpy_curried",
+  "baseline_name": "saxpy",
+  "scalar_args": {
+    "a": 2.5
+  },
+  "tensor_inputs": [
+    "x",
+    "y"
+  ],
+  "result_kind": "tensor",
+  "description": "Curried helper plus partial application normalized into Tensor1.map2",
+  "application": "Higher-level numerical DSLs that express vector updates with local helper combinators",
+  "application_domain": "scientific-computing",
+  "workload_class": "affine-vector-update",
+  "capability_expected": "supported"
+}

@@ -1,0 +1,17 @@
+{
+  "kind": "benchmark",
+  "name": "relu_guard_reordered",
+  "input_kind": "ocaml",
+  "source_path": "source/ocaml/relu_guard_reordered.ml",
+  "entry": "relu_guard_reordered",
+  "baseline_name": "relu",
+  "scalar_args": {},
+  "tensor_inputs": ["x"],
+  "result_kind": "tensor",
+  "description": "Held-out ReLU with reversed comparison spelling and helper binding",
+  "application": "Generalization check for simple activation lowering outside the exact benchmark spelling",
+  "application_domain": "ml-inference",
+  "workload_class": "generalization-activation",
+  "plot_scale_mode": "linear_only",
+  "capability_expected": "supported"
+}

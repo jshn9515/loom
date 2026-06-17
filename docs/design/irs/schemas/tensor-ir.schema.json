@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://loom.dev/schemas/tensor-ir.schema.json",
+  "title": "TensorIR",
+  "type": "object",
+  "required": ["entry_name", "params", "result", "nodes"],
+  "properties": {
+    "entry_name": { "type": "string" },
+    "params": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["kind", "name"],
+        "properties": {
+          "kind": { "type": "string" },
+          "name": { "type": "string" },
+          "shape_symbol": { "type": "string" }
+        },
+        "additionalProperties": true
+      }
+    },
+    "result": {
+      "type": "object",
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": { "enum": ["tensor", "scalar"] },
+        "value": { "type": ["string", "number"] }
+      },
+      "additionalProperties": true
+    },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["kind", "id"],
+        "properties": {
+          "kind": { "enum": ["elementwise1d", "reduce1d"] },
+          "id": { "type": "integer" },
+          "shape_symbol": { "type": "string" },
+          "inputs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["name", "source"],
+              "properties": {
+                "name": { "type": "string" },
+                "source": { "type": "string" }
+              },
+              "additionalProperties": true
+            }
+          },
+          "scalar_params": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "body": { "type": "object" },
+          "op": { "type": "string" },
+          "input": { "type": "string" }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}

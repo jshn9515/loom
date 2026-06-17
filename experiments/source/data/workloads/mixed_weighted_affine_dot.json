@@ -1,0 +1,21 @@
+{
+  "kind": "benchmark",
+  "name": "mixed_weighted_affine_dot",
+  "input_kind": "ocaml",
+  "source_path": "source/ocaml/mixed_weighted_affine_dot.ml",
+  "entry": "mixed_weighted_affine_dot",
+  "baseline_name": "mixed_weighted_affine_dot",
+  "scalar_args": {
+    "weight": 1.75,
+    "scale": 0.875,
+    "bias": -0.125
+  },
+  "tensor_inputs": ["x", "y"],
+  "result_kind": "scalar",
+  "description": "Weighted dot product with an affine transform on one input",
+  "application": "Feature-weighted scoring with local normalization in ranking and scientific models",
+  "application_domain": "scientific-computing",
+  "workload_class": "mixed-weighted-affine-reduction",
+  "plot_scale_mode": "linear_and_log",
+  "capability_expected": "supported"
+}

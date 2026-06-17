@@ -1,0 +1,5 @@
+(library
+ (name loom_backend_cuda)
+ (wrapped false)
+ (libraries loom_core loom_frontend_cpp loom_frontend_ocaml loom_frontend_python loom_normalize loom_tensorize unix yojson)
+ (modules cuda_analysis cuda_backend cuda_plan))

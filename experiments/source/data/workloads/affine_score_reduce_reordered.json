@@ -1,0 +1,21 @@
+{
+  "kind": "benchmark",
+  "name": "affine_score_reduce_reordered",
+  "input_kind": "ocaml",
+  "source_path": "source/ocaml/affine_score_reduce_reordered.ml",
+  "entry": "affine_score_reduce_reordered",
+  "baseline_name": "affine_score_reduce",
+  "scalar_args": {
+    "scale": 1.25,
+    "bias": -0.15,
+    "threshold": 0.2
+  },
+  "tensor_inputs": ["x"],
+  "result_kind": "scalar",
+  "description": "Held-out affine threshold reduction with reordered arithmetic and guard spelling",
+  "application": "Generalization check for score aggregation code written with helper bindings and equivalent guard order",
+  "application_domain": "ml-inference",
+  "workload_class": "generalization-affine-score-reduction",
+  "plot_scale_mode": "linear_and_log",
+  "capability_expected": "supported"
+}

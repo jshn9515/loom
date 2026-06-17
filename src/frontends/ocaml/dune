@@ -1,0 +1,5 @@
+(library
+ (name loom_frontend_ocaml)
+ (wrapped false)
+ (libraries compiler-libs.common loom_core)
+ (modules ocaml_entry_scan ocaml_front_ir ocaml_raw_lambda))

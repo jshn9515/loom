@@ -1,0 +1,21 @@
+{
+  "kind": "benchmark",
+  "name": "saxpy",
+  "input_kind": "ocaml",
+  "source_path": "source/ocaml/saxpy.ml",
+  "entry": "saxpy",
+  "baseline_name": "saxpy",
+  "scalar_args": {
+    "a": 2.5
+  },
+  "tensor_inputs": [
+    "x",
+    "y"
+  ],
+  "result_kind": "tensor",
+  "description": "Affine vector combination through Tensor1.map2",
+  "application": "AXPY-style vector updates in linear algebra and optimizer steps",
+  "application_domain": "scientific-computing",
+  "workload_class": "affine-vector-update",
+  "capability_expected": "supported"
+}

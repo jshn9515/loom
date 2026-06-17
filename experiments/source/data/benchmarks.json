@@ -1,0 +1,168 @@
+{
+  "seed": 20260417,
+  "block_size": 256,
+  "num_warps": 4,
+  "warmup_repetitions": 5,
+  "runtime_repetitions": 30,
+  "compile_repetitions": 10,
+  "compile_probe_size": 4096,
+  "runtime_sizes": [65536, 1048576, 16777216],
+  "supported_kernels": [
+    {
+      "name": "saxpy",
+      "source_name": "saxpy",
+      "baseline_name": "saxpy",
+      "entry": "saxpy",
+      "scalar_args": { "a": 2.5 },
+      "tensor_inputs": ["x", "y"],
+      "result_kind": "tensor",
+      "description": "Affine vector combination through Tensor1.map2",
+      "application": "AXPY-style vector updates in linear algebra and optimizer steps"
+    },
+    {
+      "name": "relu",
+      "source_name": "relu",
+      "baseline_name": "relu",
+      "entry": "relu",
+      "scalar_args": {},
+      "tensor_inputs": ["x"],
+      "result_kind": "tensor",
+      "description": "Elementwise threshold using scalar control flow",
+      "application": "Activation functions and thresholding in neural network inference"
+    },
+    {
+      "name": "l2_norm_sq",
+      "source_name": "l2_norm_sq",
+      "baseline_name": "l2_norm_sq",
+      "entry": "l2_norm_sq",
+      "scalar_args": {},
+      "tensor_inputs": ["x"],
+      "result_kind": "scalar",
+      "description": "Elementwise square followed by reduction",
+      "application": "Norm accumulation for loss terms, diagnostics, and similarity scoring"
+    },
+    {
+      "name": "dot",
+      "source_name": "dot",
+      "baseline_name": "dot",
+      "entry": "dot",
+      "scalar_args": {},
+      "tensor_inputs": ["x", "y"],
+      "result_kind": "scalar",
+      "description": "Binary elementwise multiply followed by reduction",
+      "application": "Dot products in attention, similarity search, and BLAS-style primitives"
+    },
+    {
+      "name": "saxpy_curried",
+      "source_name": "saxpy_curried",
+      "baseline_name": "saxpy",
+      "entry": "saxpy_curried",
+      "scalar_args": { "a": 2.5 },
+      "tensor_inputs": ["x", "y"],
+      "result_kind": "tensor",
+      "description": "Curried helper plus partial application normalized into Tensor1.map2",
+      "application": "Higher-level numerical DSLs that express vector updates with local helper combinators"
+    },
+    {
+      "name": "relu_tupled",
+      "source_name": "relu_tupled",
+      "baseline_name": "relu",
+      "entry": "relu_tupled",
+      "scalar_args": {},
+      "tensor_inputs": ["x"],
+      "result_kind": "tensor",
+      "description": "Tuple destructuring plus local helper function normalized into Tensor1.map",
+      "application": "Configuration-driven pointwise transforms with local scalar setup values"
+    },
+    {
+      "name": "dot_pipeline",
+      "source_name": "dot_pipeline",
+      "baseline_name": "dot",
+      "entry": "dot_pipeline",
+      "scalar_args": {},
+      "tensor_inputs": ["x", "y"],
+      "result_kind": "scalar",
+      "description": "Local helper decomposition of map2 plus reduce_sum normalized into a dot product",
+      "application": "Pipeline-style frontend code that factors tensor algebra into small reusable helpers"
+    }
+  ],
+  "capability_cases": [
+    {
+      "name": "saxpy",
+      "entry": "saxpy",
+      "relative_source": "source/ocaml/saxpy.ml",
+      "expected": "supported",
+      "description": "Elementwise map2 over two tensors"
+    },
+    {
+      "name": "relu",
+      "entry": "relu",
+      "relative_source": "source/ocaml/relu.ml",
+      "expected": "supported",
+      "description": "Scalar if inside Tensor1.map"
+    },
+    {
+      "name": "l2_norm_sq",
+      "entry": "l2_norm_sq",
+      "relative_source": "source/ocaml/l2_norm_sq.ml",
+      "expected": "supported",
+      "description": "Map followed by reduce_sum"
+    },
+    {
+      "name": "dot",
+      "entry": "dot",
+      "relative_source": "source/ocaml/dot.ml",
+      "expected": "supported",
+      "description": "Map2 followed by reduce_sum"
+    },
+    {
+      "name": "saxpy_curried",
+      "entry": "saxpy_curried",
+      "relative_source": "source/ocaml/saxpy_curried.ml",
+      "expected": "supported",
+      "description": "Curried local helper plus partial application"
+    },
+    {
+      "name": "relu_tupled",
+      "entry": "relu_tupled",
+      "relative_source": "source/ocaml/relu_tupled.ml",
+      "expected": "supported",
+      "description": "Tuple destructuring and helper normalization"
+    },
+    {
+      "name": "dot_pipeline",
+      "entry": "dot_pipeline",
+      "relative_source": "source/ocaml/dot_pipeline.ml",
+      "expected": "supported",
+      "description": "Local tensor/scalar helper decomposition"
+    },
+    {
+      "name": "unknown_call",
+      "entry": "bad",
+      "relative_source": "source/ocaml/limitations/unknown_call.ml",
+      "expected": "unsupported",
+      "description": "Unknown function call inside scalar lambda"
+    },
+    {
+      "name": "tensor_capture",
+      "entry": "bad",
+      "relative_source": "source/ocaml/limitations/tensor_capture.ml",
+      "expected": "unsupported",
+      "description": "Tensor value captured inside scalar lambda"
+    },
+    {
+      "name": "tuple_output",
+      "entry": "bad",
+      "relative_source": "source/ocaml/limitations/tuple_output.ml",
+      "expected": "unsupported",
+      "description": "Tuple output in staged region"
+    },
+    {
+      "name": "recursive",
+      "entry": "bad",
+      "relative_source": "source/ocaml/limitations/recursive.ml",
+      "expected": "unsupported",
+      "description": "Recursive function inside staged entry"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+(library
+ (name loom_stdlib)
+ (wrapped false)
+ (modules loom tensor1))
+

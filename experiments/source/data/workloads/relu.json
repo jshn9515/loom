@@ -1,0 +1,19 @@
+{
+  "kind": "benchmark",
+  "name": "relu",
+  "input_kind": "ocaml",
+  "source_path": "source/ocaml/relu.ml",
+  "entry": "relu",
+  "baseline_name": "relu",
+  "scalar_args": {},
+  "tensor_inputs": [
+    "x"
+  ],
+  "result_kind": "tensor",
+  "description": "Elementwise threshold using scalar control flow",
+  "application": "Activation functions and thresholding in neural network inference",
+  "application_domain": "ml-inference",
+  "workload_class": "activation",
+  "plot_scale_mode": "linear_and_log",
+  "capability_expected": "supported"
+}

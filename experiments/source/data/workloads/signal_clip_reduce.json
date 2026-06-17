@@ -1,0 +1,21 @@
+{
+  "kind": "benchmark",
+  "name": "signal_clip_reduce",
+  "input_kind": "ocaml",
+  "source_path": "source/ocaml/signal_clip_reduce.ml",
+  "entry": "signal_clip_reduce",
+  "baseline_name": "signal_clip_reduce",
+  "scalar_args": {
+    "scale": 1.4,
+    "epsilon": 0.001,
+    "clip": 0.85
+  },
+  "tensor_inputs": ["bid", "ask"],
+  "result_kind": "scalar",
+  "description": "Normalized order-book signal with clipping followed by reduction",
+  "application": "HFT-style microstructure feature aggregation where per-level imbalance is clipped before rolling accumulation",
+  "application_domain": "hft",
+  "workload_class": "signal-reduction",
+  "plot_scale_mode": "linear_and_log",
+  "capability_expected": "supported"
+}

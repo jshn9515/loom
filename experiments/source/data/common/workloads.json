@@ -1,0 +1,675 @@
+{
+  "supported_kernels": [
+    {
+      "name": "affine_clamp",
+      "baseline_name": "affine_clamp",
+      "entry": "affine_clamp",
+      "scalar_args": { "scale": 1.125, "bias": -0.2, "lo": -1.5, "hi": 1.5 },
+      "tensor_inputs": ["x"],
+      "result_kind": "tensor",
+      "description": "Affine pointwise transform with lower and upper saturation",
+      "application": "Feature preprocessing, clipping, and bounded signal transforms in inference and control pipelines",
+      "application_domain": "ml-inference",
+      "workload_class": "affine-clamp"
+    },
+    {
+      "name": "affine_score_reduce",
+      "baseline_name": "affine_score_reduce",
+      "entry": "affine_score_reduce",
+      "scalar_args": { "scale": 1.25, "bias": -0.15, "threshold": 0.2 },
+      "tensor_inputs": ["x"],
+      "result_kind": "scalar",
+      "description": "Affine transform, thresholding, and reduction fused into one score accumulation",
+      "application": "Inference-time score aggregation and thresholded feature pooling in ranking and signal scoring systems",
+      "application_domain": "ml-inference",
+      "workload_class": "affine-score-reduction"
+    },
+    {
+      "name": "affine_score_reduce_reordered",
+      "baseline_name": "affine_score_reduce",
+      "entry": "affine_score_reduce_reordered",
+      "scalar_args": { "scale": 1.25, "bias": -0.15, "threshold": 0.2 },
+      "tensor_inputs": ["x"],
+      "result_kind": "scalar",
+      "description": "Held-out affine threshold reduction with reordered arithmetic and guard spelling",
+      "application": "Generalization check for score aggregation code written with helper bindings and equivalent guard order",
+      "application_domain": "ml-inference",
+      "workload_class": "generalization-affine-score-reduction"
+    },
+    {
+      "name": "book_imbalance",
+      "baseline_name": "book_imbalance",
+      "entry": "book_imbalance",
+      "scalar_args": { "epsilon": 1.0 },
+      "tensor_inputs": ["bid", "ask"],
+      "result_kind": "tensor",
+      "description": "Elementwise order-book imbalance ratio from bid and ask volumes",
+      "application": "Order-book imbalance features for market making and short-horizon prediction",
+      "application_domain": "hft",
+      "workload_class": "order-book-feature"
+    },
+    {
+      "name": "clipped_huber_sum",
+      "baseline_name": "clipped_huber_sum",
+      "entry": "clipped_huber_sum",
+      "scalar_args": { "delta": 1.5, "cap": 4.0 },
+      "tensor_inputs": ["x", "y"],
+      "result_kind": "scalar",
+      "description": "Huber-style robust loss with per-element clipping",
+      "application": "Robust loss accumulation with contribution clipping in training, calibration, and outlier-sensitive estimation",
+      "application_domain": "ml-training",
+      "workload_class": "robust-clipped-loss"
+    },
+    {
+      "name": "clipped_huber_sum_reordered",
+      "baseline_name": "clipped_huber_sum",
+      "entry": "clipped_huber_sum_reordered",
+      "scalar_args": { "delta": 1.5, "cap": 4.0 },
+      "tensor_inputs": ["x", "y"],
+      "result_kind": "scalar",
+      "description": "Held-out clipped Huber reduction with equivalent arithmetic and reversed comparisons",
+      "application": "Generalization check for robust loss reductions expressed through local helper functions",
+      "application_domain": "ml-training",
+      "workload_class": "generalization-robust-clipped-loss"
+    },
+    {
+      "name": "dot",
+      "baseline_name": "dot",
+      "entry": "dot",
+      "scalar_args": {},
+      "tensor_inputs": ["x", "y"],
+      "result_kind": "scalar",
+      "description": "Binary elementwise multiply followed by reduction",
+      "application": "Dot products in attention, similarity search, and BLAS-style primitives",
+      "application_domain": "scientific-computing",
+      "workload_class": "dot-product"
+    },
+    {
+      "name": "dot_pipeline",
+      "baseline_name": "dot",
+      "entry": "dot_pipeline",
+      "scalar_args": {},
+      "tensor_inputs": ["x", "y"],
+      "result_kind": "scalar",
+      "description": "Local helper decomposition of map2 plus reduce_sum normalized into a dot product",
+      "application": "Pipeline-style frontend code that factors tensor algebra into small reusable helpers",
+      "application_domain": "scientific-computing",
+      "workload_class": "dot-product"
+    },
+    {
+      "name": "huber_sum",
+      "baseline_name": "huber_sum",
+      "entry": "huber_sum",
+      "scalar_args": { "delta": 1.0 },
+      "tensor_inputs": ["x", "y"],
+      "result_kind": "scalar",
+      "description": "Robust Huber-style loss accumulation with nested scalar control flow",
+      "application": "Robust regression and noise-tolerant residual scoring",
+      "application_domain": "ml-training",
+      "workload_class": "robust-loss"
+    },
+    {
+      "name": "inventory_penalty_sum",
+      "baseline_name": "inventory_penalty_sum",
+      "entry": "inventory_penalty_sum",
+      "scalar_args": { "target": 0.0 },
+      "tensor_inputs": ["pos"],
+      "result_kind": "scalar",
+      "description": "Quadratic deviation penalty from a target inventory level",
+      "application": "Inventory risk aggregation in market making and execution control",
+      "application_domain": "hft",
+      "workload_class": "inventory-risk-reduction"
+    },
+    {
+      "name": "l2_norm_sq",
+      "baseline_name": "l2_norm_sq",
+      "entry": "l2_norm_sq",
+      "scalar_args": {},
+      "tensor_inputs": ["x"],
+      "result_kind": "scalar",
+      "description": "Elementwise square followed by reduction",
+      "application": "Norm accumulation for loss terms, diagnostics, and similarity scoring",
+      "application_domain": "scientific-computing",
+      "workload_class": "reduction-norm"
+    },
+    {
+      "name": "mse_sum",
+      "baseline_name": "mse_sum",
+      "entry": "mse_sum",
+      "scalar_args": {},
+      "tensor_inputs": ["x", "y"],
+      "result_kind": "scalar",
+      "description": "Squared error accumulation over two vectors",
+      "application": "Mean-squared-error style loss accumulation in model training and calibration",
+      "application_domain": "ml-training",
+      "workload_class": "loss-reduction"
+    },
+    {
+      "name": "mixed_biased_l2_norm",
+      "baseline_name": "mixed_biased_l2_norm",
+      "entry": "mixed_biased_l2_norm",
+      "scalar_args": { "scale": 1.125, "bias": -0.375 },
+      "tensor_inputs": ["x"],
+      "result_kind": "scalar",
+      "description": "Squared norm after affine input normalization",
+      "application": "Regularization and diagnostics over normalized feature vectors",
+      "application_domain": "ml-training",
+      "workload_class": "mixed-biased-norm-reduction"
+    },
+    {
+      "name": "mixed_book_signal",
+      "baseline_name": "mixed_book_signal",
+      "entry": "mixed_book_signal",
+      "scalar_args": { "scale": 1.5, "epsilon": 1.0, "threshold": 0.25 },
+      "tensor_inputs": ["bid", "ask"],
+      "result_kind": "tensor",
+      "description": "Thresholded and scaled order-book imbalance signal",
+      "application": "Order-book feature extraction with guard conditions and scaling in short-horizon trading models",
+      "application_domain": "hft",
+      "workload_class": "mixed-order-book-feature"
+    },
+    {
+      "name": "mixed_book_signal_reassociated",
+      "baseline_name": "mixed_book_signal",
+      "entry": "mixed_book_signal_reassociated",
+      "scalar_args": { "scale": 1.5, "epsilon": 1.0, "threshold": 0.25 },
+      "tensor_inputs": ["bid", "ask"],
+      "result_kind": "tensor",
+      "description": "Held-out mixed order-book signal with reassociated denominator and guard spelling",
+      "application": "Generalization check for branchy order-book feature extraction expressed with helper bindings",
+      "application_domain": "hft",
+      "workload_class": "generalization-mixed-order-book-feature"
+    },
+    {
+      "name": "mixed_weighted_affine_dot",
+      "baseline_name": "mixed_weighted_affine_dot",
+      "entry": "mixed_weighted_affine_dot",
+      "scalar_args": { "weight": 1.75, "scale": 0.875, "bias": -0.125 },
+      "tensor_inputs": ["x", "y"],
+      "result_kind": "scalar",
+      "description": "Weighted dot product with an affine transform on one input",
+      "application": "Feature-weighted scoring with local normalization in ranking and scientific models",
+      "application_domain": "scientific-computing",
+      "workload_class": "mixed-weighted-affine-reduction"
+    },
+    {
+      "name": "piecewise_weighted_dot",
+      "baseline_name": "piecewise_weighted_dot",
+      "entry": "piecewise_weighted_dot",
+      "scalar_args": { "weight_pos": 1.1, "weight_neg": 0.65 },
+      "tensor_inputs": ["x", "y"],
+      "result_kind": "scalar",
+      "description": "Branchy weighted dot product with separate positive and negative-path coefficients",
+      "application": "Piecewise feature scoring and sign-sensitive similarity aggregation in scientific and quantitative pipelines",
+      "application_domain": "scientific-computing",
+      "workload_class": "piecewise-weighted-dot"
+    },
+    {
+      "name": "piecewise_weighted_dot_reordered",
+      "baseline_name": "piecewise_weighted_dot",
+      "entry": "piecewise_weighted_dot_reordered",
+      "scalar_args": { "weight_pos": 1.1, "weight_neg": 0.65 },
+      "tensor_inputs": ["x", "y"],
+      "result_kind": "scalar",
+      "description": "Held-out piecewise weighted dot product with reordered multiply and guard spelling",
+      "application": "Generalization check for sign-sensitive reductions written with local weight selection",
+      "application_domain": "scientific-computing",
+      "workload_class": "generalization-piecewise-weighted-dot"
+    },
+    {
+      "name": "quote_filter",
+      "baseline_name": "quote_filter",
+      "entry": "quote_filter",
+      "scalar_args": { "threshold": 0.05 },
+      "tensor_inputs": ["bid", "ask"],
+      "result_kind": "tensor",
+      "description": "Spread-based quote filtering with scalar threshold control",
+      "application": "Fast quote sanitation and spread-triggered routing logic",
+      "application_domain": "hft",
+      "workload_class": "quote-spread-filter"
+    },
+    {
+      "name": "ratio_weighted_sum",
+      "baseline_name": "ratio_weighted_sum",
+      "entry": "ratio_weighted_sum",
+      "scalar_args": { "scale": 0.85, "epsilon": 0.125 },
+      "tensor_inputs": ["x", "y"],
+      "result_kind": "scalar",
+      "description": "Weighted ratio accumulation with a fused map plus sum reduction",
+      "application": "Scientific and quantitative scoring pipelines that normalize one signal by another before aggregation",
+      "application_domain": "scientific-computing",
+      "workload_class": "weighted-ratio-reduction"
+    },
+    {
+      "name": "ratio_weighted_sum_reassociated",
+      "baseline_name": "ratio_weighted_sum",
+      "entry": "ratio_weighted_sum_reassociated",
+      "scalar_args": { "scale": 0.85, "epsilon": 0.125 },
+      "tensor_inputs": ["x", "y"],
+      "result_kind": "scalar",
+      "description": "Held-out ratio reduction with reassociated denominator and helper binding",
+      "application": "Generalization check for ratio-heavy reductions expressed through equivalent scalar structure",
+      "application_domain": "hft",
+      "workload_class": "generalization-ratio-reduction"
+    },
+    {
+      "name": "relu",
+      "baseline_name": "relu",
+      "entry": "relu",
+      "scalar_args": {},
+      "tensor_inputs": ["x"],
+      "result_kind": "tensor",
+      "description": "Elementwise threshold using scalar control flow",
+      "application": "Activation functions and thresholding in neural network inference",
+      "application_domain": "ml-inference",
+      "workload_class": "activation"
+    },
+    {
+      "name": "relu_tupled",
+      "baseline_name": "relu",
+      "entry": "relu_tupled",
+      "scalar_args": {},
+      "tensor_inputs": ["x"],
+      "result_kind": "tensor",
+      "description": "Tuple destructuring plus local helper function normalized into Tensor1.map",
+      "application": "Configuration-driven pointwise transforms with local scalar setup values",
+      "application_domain": "ml-inference",
+      "workload_class": "activation"
+    },
+    {
+      "name": "relu_guard_reordered",
+      "baseline_name": "relu",
+      "entry": "relu_guard_reordered",
+      "scalar_args": {},
+      "tensor_inputs": ["x"],
+      "result_kind": "tensor",
+      "description": "Held-out ReLU with reversed comparison spelling and helper binding",
+      "application": "Generalization check for simple activation lowering outside the exact benchmark spelling",
+      "application_domain": "ml-inference",
+      "workload_class": "generalization-activation"
+    },
+    {
+      "name": "saxpy",
+      "baseline_name": "saxpy",
+      "entry": "saxpy",
+      "scalar_args": { "a": 2.5 },
+      "tensor_inputs": ["x", "y"],
+      "result_kind": "tensor",
+      "description": "Affine vector combination through Tensor1.map2",
+      "application": "AXPY-style vector updates in linear algebra and optimizer steps",
+      "application_domain": "scientific-computing",
+      "workload_class": "affine-vector-update"
+    },
+    {
+      "name": "saxpy_curried",
+      "baseline_name": "saxpy",
+      "entry": "saxpy_curried",
+      "scalar_args": { "a": 2.5 },
+      "tensor_inputs": ["x", "y"],
+      "result_kind": "tensor",
+      "description": "Curried helper plus partial application normalized into Tensor1.map2",
+      "application": "Higher-level numerical DSLs that express vector updates with local helper combinators",
+      "application_domain": "scientific-computing",
+      "workload_class": "affine-vector-update"
+    },
+    {
+      "name": "scaled_book_signal",
+      "baseline_name": "scaled_book_signal",
+      "entry": "scaled_book_signal",
+      "scalar_args": { "scale": 1.75, "epsilon": 0.001 },
+      "tensor_inputs": ["bid", "ask"],
+      "result_kind": "tensor",
+      "description": "Scaled microstructure imbalance signal from bid and ask vectors",
+      "application": "Order-book feature extraction and normalized imbalance signals in low-latency trading systems",
+      "application_domain": "hft",
+      "workload_class": "order-book-feature"
+    },
+    {
+      "name": "signal_clip_reduce",
+      "baseline_name": "signal_clip_reduce",
+      "entry": "signal_clip_reduce",
+      "scalar_args": { "scale": 1.4, "epsilon": 0.001, "clip": 0.85 },
+      "tensor_inputs": ["bid", "ask"],
+      "result_kind": "scalar",
+      "description": "Normalized order-book signal with clipping followed by reduction",
+      "application": "HFT-style microstructure feature aggregation where per-level imbalance is clipped before rolling accumulation",
+      "application_domain": "hft",
+      "workload_class": "signal-reduction"
+    },
+    {
+      "name": "signal_clip_reduce_reassociated",
+      "baseline_name": "signal_clip_reduce",
+      "entry": "signal_clip_reduce_reassociated",
+      "scalar_args": { "scale": 1.4, "epsilon": 0.001, "clip": 0.85 },
+      "tensor_inputs": ["bid", "ask"],
+      "result_kind": "scalar",
+      "description": "Held-out clipped order-book signal reduction with reassociated arithmetic and explicit negative clip",
+      "application": "Generalization check for clipped market-feature reductions written with helper bindings",
+      "application_domain": "hft",
+      "workload_class": "generalization-signal-reduction"
+    },
+    {
+      "name": "soft_threshold",
+      "baseline_name": "soft_threshold",
+      "entry": "soft_threshold",
+      "scalar_args": { "threshold": 0.25 },
+      "tensor_inputs": ["x"],
+      "result_kind": "tensor",
+      "description": "Elementwise shrinkage with two-sided thresholding",
+      "application": "Sparse signal processing and proximal-style optimization steps",
+      "application_domain": "scientific-computing",
+      "workload_class": "sparsity-thresholding"
+    },
+    {
+      "name": "soft_threshold_reordered",
+      "baseline_name": "soft_threshold",
+      "entry": "soft_threshold_reordered",
+      "scalar_args": { "threshold": 0.25 },
+      "tensor_inputs": ["x"],
+      "result_kind": "tensor",
+      "description": "Held-out soft threshold with reversed branch order and helper binding",
+      "application": "Generalization check for shrinkage operators written with equivalent but differently ordered guards",
+      "application_domain": "ml-inference",
+      "workload_class": "generalization-soft-threshold"
+    },
+    {
+      "name": "weighted_dot",
+      "baseline_name": "weighted_dot",
+      "entry": "weighted_dot",
+      "scalar_args": { "weight": 0.75 },
+      "tensor_inputs": ["x", "y"],
+      "result_kind": "scalar",
+      "description": "Weighted dot product accumulation",
+      "application": "Feature-weighted similarity accumulation in scientific computing and quantitative models",
+      "application_domain": "scientific-computing",
+      "workload_class": "weighted-dot-product"
+    },
+    {
+      "name": "weighted_dot_pipeline",
+      "baseline_name": "weighted_dot",
+      "entry": "weighted_dot_pipeline",
+      "scalar_args": { "weight": 0.75 },
+      "tensor_inputs": ["x", "y"],
+      "result_kind": "scalar",
+      "description": "Weighted dot product written using helper decomposition and partial application",
+      "application": "Feature-weighted similarity accumulation in scientific computing and quantitative models",
+      "application_domain": "scientific-computing",
+      "workload_class": "weighted-dot-product"
+    }
+  ],
+  "capability_cases": [
+    {
+      "name": "affine_clamp",
+      "entry": "affine_clamp",
+      "relative_source": "ocaml/affine_clamp.ml",
+      "expected": "supported",
+      "description": "Affine pointwise transform with lower and upper saturation"
+    },
+    {
+      "name": "affine_score_reduce",
+      "entry": "affine_score_reduce",
+      "relative_source": "ocaml/affine_score_reduce.ml",
+      "expected": "supported",
+      "description": "Affine transform, thresholding, and reduction fused into one score accumulation"
+    },
+    {
+      "name": "affine_score_reduce_reordered",
+      "entry": "affine_score_reduce_reordered",
+      "relative_source": "ocaml/affine_score_reduce_reordered.ml",
+      "expected": "supported",
+      "description": "Held-out affine threshold reduction with reordered arithmetic and guard spelling"
+    },
+    {
+      "name": "book_imbalance",
+      "entry": "book_imbalance",
+      "relative_source": "ocaml/book_imbalance.ml",
+      "expected": "supported",
+      "description": "Elementwise order-book imbalance ratio from bid and ask volumes"
+    },
+    {
+      "name": "clipped_huber_sum",
+      "entry": "clipped_huber_sum",
+      "relative_source": "ocaml/clipped_huber_sum.ml",
+      "expected": "supported",
+      "description": "Huber-style robust loss with per-element clipping"
+    },
+    {
+      "name": "clipped_huber_sum_reordered",
+      "entry": "clipped_huber_sum_reordered",
+      "relative_source": "ocaml/clipped_huber_sum_reordered.ml",
+      "expected": "supported",
+      "description": "Held-out clipped Huber reduction with equivalent arithmetic and reversed comparisons"
+    },
+    {
+      "name": "dot",
+      "entry": "dot",
+      "relative_source": "ocaml/dot.ml",
+      "expected": "supported",
+      "description": "Binary elementwise multiply followed by reduction"
+    },
+    {
+      "name": "dot_pipeline",
+      "entry": "dot_pipeline",
+      "relative_source": "ocaml/dot_pipeline.ml",
+      "expected": "supported",
+      "description": "Local helper decomposition of map2 plus reduce_sum normalized into a dot product"
+    },
+    {
+      "name": "huber_sum",
+      "entry": "huber_sum",
+      "relative_source": "ocaml/huber_sum.ml",
+      "expected": "supported",
+      "description": "Robust Huber-style loss accumulation with nested scalar control flow"
+    },
+    {
+      "name": "inventory_penalty_sum",
+      "entry": "inventory_penalty_sum",
+      "relative_source": "ocaml/inventory_penalty_sum.ml",
+      "expected": "supported",
+      "description": "Quadratic deviation penalty from a target inventory level"
+    },
+    {
+      "name": "l2_norm_sq",
+      "entry": "l2_norm_sq",
+      "relative_source": "ocaml/l2_norm_sq.ml",
+      "expected": "supported",
+      "description": "Elementwise square followed by reduction"
+    },
+    {
+      "name": "mse_sum",
+      "entry": "mse_sum",
+      "relative_source": "ocaml/mse_sum.ml",
+      "expected": "supported",
+      "description": "Squared error accumulation over two vectors"
+    },
+    {
+      "name": "mixed_biased_l2_norm",
+      "entry": "mixed_biased_l2_norm",
+      "relative_source": "ocaml/mixed_biased_l2_norm.ml",
+      "expected": "supported",
+      "description": "Squared norm after affine input normalization"
+    },
+    {
+      "name": "mixed_book_signal",
+      "entry": "mixed_book_signal",
+      "relative_source": "ocaml/mixed_book_signal.ml",
+      "expected": "supported",
+      "description": "Thresholded and scaled order-book imbalance signal"
+    },
+    {
+      "name": "mixed_book_signal_reassociated",
+      "entry": "mixed_book_signal_reassociated",
+      "relative_source": "ocaml/mixed_book_signal_reassociated.ml",
+      "expected": "supported",
+      "description": "Held-out mixed order-book signal with reassociated denominator and guard spelling"
+    },
+    {
+      "name": "mixed_weighted_affine_dot",
+      "entry": "mixed_weighted_affine_dot",
+      "relative_source": "ocaml/mixed_weighted_affine_dot.ml",
+      "expected": "supported",
+      "description": "Weighted dot product with an affine transform on one input"
+    },
+    {
+      "name": "piecewise_weighted_dot",
+      "entry": "piecewise_weighted_dot",
+      "relative_source": "ocaml/piecewise_weighted_dot.ml",
+      "expected": "supported",
+      "description": "Branchy weighted dot product with separate positive and negative-path coefficients"
+    },
+    {
+      "name": "piecewise_weighted_dot_reordered",
+      "entry": "piecewise_weighted_dot_reordered",
+      "relative_source": "ocaml/piecewise_weighted_dot_reordered.ml",
+      "expected": "supported",
+      "description": "Held-out piecewise weighted dot product with reordered multiply and guard spelling"
+    },
+    {
+      "name": "prefix_sum",
+      "entry": "bad",
+      "relative_source": "ocaml/limitations/prefix_sum.ml",
+      "expected": "unsupported",
+      "description": "Scan-style prefix dependency outside the current staged tensor subset"
+    },
+    {
+      "name": "quote_filter",
+      "entry": "quote_filter",
+      "relative_source": "ocaml/quote_filter.ml",
+      "expected": "supported",
+      "description": "Spread-based quote filtering with scalar threshold control"
+    },
+    {
+      "name": "ratio_weighted_sum",
+      "entry": "ratio_weighted_sum",
+      "relative_source": "ocaml/ratio_weighted_sum.ml",
+      "expected": "supported",
+      "description": "Weighted ratio accumulation with a fused map plus sum reduction"
+    },
+    {
+      "name": "ratio_weighted_sum_reassociated",
+      "entry": "ratio_weighted_sum_reassociated",
+      "relative_source": "ocaml/ratio_weighted_sum_reassociated.ml",
+      "expected": "supported",
+      "description": "Held-out ratio reduction with reassociated denominator and helper binding"
+    },
+    {
+      "name": "recursive",
+      "entry": "bad",
+      "relative_source": "ocaml/limitations/recursive.ml",
+      "expected": "unsupported",
+      "description": "Recursive function inside staged entry"
+    },
+    {
+      "name": "relu",
+      "entry": "relu",
+      "relative_source": "ocaml/relu.ml",
+      "expected": "supported",
+      "description": "Elementwise threshold using scalar control flow"
+    },
+    {
+      "name": "relu_tupled",
+      "entry": "relu_tupled",
+      "relative_source": "ocaml/relu_tupled.ml",
+      "expected": "supported",
+      "description": "Tuple destructuring plus local helper function normalized into Tensor1.map"
+    },
+    {
+      "name": "relu_guard_reordered",
+      "entry": "relu_guard_reordered",
+      "relative_source": "ocaml/relu_guard_reordered.ml",
+      "expected": "supported",
+      "description": "Held-out ReLU with reversed comparison spelling and helper binding"
+    },
+    {
+      "name": "rolling_mean",
+      "entry": "bad",
+      "relative_source": "ocaml/limitations/rolling_mean.ml",
+      "expected": "unsupported",
+      "description": "Windowed recurrence that cannot be lowered into current TensorIR"
+    },
+    {
+      "name": "saxpy",
+      "entry": "saxpy",
+      "relative_source": "ocaml/saxpy.ml",
+      "expected": "supported",
+      "description": "Affine vector combination through Tensor1.map2"
+    },
+    {
+      "name": "saxpy_curried",
+      "entry": "saxpy_curried",
+      "relative_source": "ocaml/saxpy_curried.ml",
+      "expected": "supported",
+      "description": "Curried helper plus partial application normalized into Tensor1.map2"
+    },
+    {
+      "name": "scaled_book_signal",
+      "entry": "scaled_book_signal",
+      "relative_source": "ocaml/scaled_book_signal.ml",
+      "expected": "supported",
+      "description": "Scaled microstructure imbalance signal from bid and ask vectors"
+    },
+    {
+      "name": "signal_clip_reduce",
+      "entry": "signal_clip_reduce",
+      "relative_source": "ocaml/signal_clip_reduce.ml",
+      "expected": "supported",
+      "description": "Normalized order-book signal with clipping followed by reduction"
+    },
+    {
+      "name": "signal_clip_reduce_reassociated",
+      "entry": "signal_clip_reduce_reassociated",
+      "relative_source": "ocaml/signal_clip_reduce_reassociated.ml",
+      "expected": "supported",
+      "description": "Held-out clipped order-book signal reduction with reassociated arithmetic and explicit negative clip"
+    },
+    {
+      "name": "soft_threshold",
+      "entry": "soft_threshold",
+      "relative_source": "ocaml/soft_threshold.ml",
+      "expected": "supported",
+      "description": "Elementwise shrinkage with two-sided thresholding"
+    },
+    {
+      "name": "soft_threshold_reordered",
+      "entry": "soft_threshold_reordered",
+      "relative_source": "ocaml/soft_threshold_reordered.ml",
+      "expected": "supported",
+      "description": "Held-out soft threshold with reversed branch order and helper binding"
+    },
+    {
+      "name": "tensor_capture",
+      "entry": "bad",
+      "relative_source": "ocaml/limitations/tensor_capture.ml",
+      "expected": "unsupported",
+      "description": "Tensor value captured inside scalar lambda"
+    },
+    {
+      "name": "tuple_output",
+      "entry": "bad",
+      "relative_source": "ocaml/limitations/tuple_output.ml",
+      "expected": "unsupported",
+      "description": "Tuple output in staged region"
+    },
+    {
+      "name": "unknown_call",
+      "entry": "bad",
+      "relative_source": "ocaml/limitations/unknown_call.ml",
+      "expected": "unsupported",
+      "description": "Unknown function call inside scalar lambda"
+    },
+    {
+      "name": "weighted_dot",
+      "entry": "weighted_dot",
+      "relative_source": "ocaml/weighted_dot.ml",
+      "expected": "supported",
+      "description": "Weighted dot product accumulation"
+    },
+    {
+      "name": "weighted_dot_pipeline",
+      "entry": "weighted_dot_pipeline",
+      "relative_source": "ocaml/weighted_dot_pipeline.ml",
+      "expected": "supported",
+      "description": "Weighted dot product written using helper decomposition and partial application"
+    }
+  ]
+}

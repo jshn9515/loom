@@ -1,0 +1,20 @@
+{
+  "kind": "benchmark",
+  "name": "dot",
+  "input_kind": "ocaml",
+  "source_path": "source/ocaml/dot.ml",
+  "entry": "dot",
+  "baseline_name": "dot",
+  "scalar_args": {},
+  "tensor_inputs": [
+    "x",
+    "y"
+  ],
+  "result_kind": "scalar",
+  "description": "Binary elementwise multiply followed by reduction",
+  "application": "Dot products in attention, similarity search, and BLAS-style primitives",
+  "application_domain": "scientific-computing",
+  "workload_class": "dot-product",
+  "plot_scale_mode": "linear_and_log",
+  "capability_expected": "supported"
+}

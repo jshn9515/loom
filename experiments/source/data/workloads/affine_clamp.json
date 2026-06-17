@@ -1,0 +1,22 @@
+{
+  "kind": "benchmark",
+  "name": "affine_clamp",
+  "input_kind": "ocaml",
+  "source_path": "source/ocaml/affine_clamp.ml",
+  "entry": "affine_clamp",
+  "baseline_name": "affine_clamp",
+  "scalar_args": {
+    "scale": 1.125,
+    "bias": -0.2,
+    "lo": -1.5,
+    "hi": 1.5
+  },
+  "tensor_inputs": ["x"],
+  "result_kind": "tensor",
+  "description": "Affine pointwise transform with lower and upper saturation",
+  "application": "Feature preprocessing, clipping, and bounded signal transforms in inference and control pipelines",
+  "application_domain": "ml-inference",
+  "workload_class": "affine-clamp",
+  "plot_scale_mode": "linear_only",
+  "capability_expected": "supported"
+}

@@ -1,0 +1,19 @@
+{
+  "kind": "benchmark",
+  "name": "soft_threshold_reordered",
+  "input_kind": "ocaml",
+  "source_path": "source/ocaml/soft_threshold_reordered.ml",
+  "entry": "soft_threshold_reordered",
+  "baseline_name": "soft_threshold",
+  "scalar_args": {
+    "threshold": 0.25
+  },
+  "tensor_inputs": ["x"],
+  "result_kind": "tensor",
+  "description": "Held-out soft threshold with reversed branch order and helper binding",
+  "application": "Generalization check for shrinkage operators written with equivalent but differently ordered guards",
+  "application_domain": "ml-inference",
+  "workload_class": "generalization-soft-threshold",
+  "plot_scale_mode": "linear_only",
+  "capability_expected": "supported"
+}

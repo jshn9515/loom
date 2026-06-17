@@ -1,0 +1,5 @@
+(library
+ (name loom_frontend_python)
+ (wrapped false)
+ (libraries loom_core unix yojson)
+ (modules python_frontend))

@@ -1,0 +1,21 @@
+{
+  "kind": "benchmark",
+  "name": "mixed_book_signal",
+  "input_kind": "ocaml",
+  "source_path": "source/ocaml/mixed_book_signal.ml",
+  "entry": "mixed_book_signal",
+  "baseline_name": "mixed_book_signal",
+  "scalar_args": {
+    "scale": 1.5,
+    "epsilon": 1.0,
+    "threshold": 0.25
+  },
+  "tensor_inputs": ["bid", "ask"],
+  "result_kind": "tensor",
+  "description": "Thresholded and scaled order-book imbalance signal",
+  "application": "Real-time market feature extraction with branchy pointwise filtering",
+  "application_domain": "hft",
+  "workload_class": "mixed-order-book-feature",
+  "plot_scale_mode": "linear_only",
+  "capability_expected": "supported"
+}

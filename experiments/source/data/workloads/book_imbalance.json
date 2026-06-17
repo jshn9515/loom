@@ -1,0 +1,21 @@
+{
+  "kind": "benchmark",
+  "name": "book_imbalance",
+  "input_kind": "ocaml",
+  "source_path": "source/ocaml/book_imbalance.ml",
+  "entry": "book_imbalance",
+  "baseline_name": "book_imbalance",
+  "scalar_args": {
+    "epsilon": 1.0
+  },
+  "tensor_inputs": [
+    "bid",
+    "ask"
+  ],
+  "result_kind": "tensor",
+  "description": "Elementwise order-book imbalance ratio from bid and ask volumes",
+  "application": "Order-book imbalance features for market making and short-horizon prediction",
+  "application_domain": "hft",
+  "workload_class": "order-book-feature",
+  "capability_expected": "supported"
+}

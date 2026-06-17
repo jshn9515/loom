@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://loom.dev/schemas/kernel-plan.schema.json",
+  "title": "KernelPlan",
+  "type": "object",
+  "required": ["entry_name", "steps", "result_name", "temporary_count"],
+  "properties": {
+    "entry_name": { "type": "string" },
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["kind", "kernel_name"],
+        "properties": {
+          "kind": { "enum": ["elementwise", "reduction"] },
+          "node_id": { "type": "integer" },
+          "kernel_name": { "type": "string" },
+          "output": { "type": "string" },
+          "input": { "type": "string" },
+          "inputs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["name", "source"],
+              "properties": {
+                "name": { "type": "string" },
+                "source": { "type": "string" }
+              },
+              "additionalProperties": true
+            }
+          },
+          "scalar_params": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "block_size": { "type": "integer" },
+          "num_warps": { "type": "integer" }
+        },
+        "additionalProperties": true
+      }
+    },
+    "result_name": { "type": "string" },
+    "temporary_count": { "type": "integer" }
+  },
+  "additionalProperties": true
+}

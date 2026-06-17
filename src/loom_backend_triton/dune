@@ -1,0 +1,5 @@
+(library
+ (name loom_backend_triton)
+ (wrapped false)
+ (libraries loom_core)
+ (modules autotune_config codegen manifest triton_analysis triton_plan))

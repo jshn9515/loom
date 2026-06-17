@@ -1,0 +1,4 @@
+(executable
+ (name main)
+ (modules main)
+ (libraries loom_backend_cuda loom_backend_cuda_artifact loom_backend_triton loom_core loom_frontend_cpp loom_frontend_ocaml loom_frontend_python loom_normalize loom_tensorize compiler-libs.common unix))

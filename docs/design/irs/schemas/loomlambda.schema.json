@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://loom.dev/schemas/loomlambda.schema.json",
+  "title": "LoomLambda",
+  "type": "object",
+  "required": ["entry", "params", "return_type", "body"],
+  "properties": {
+    "entry": { "type": "string" },
+    "params": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "type"],
+        "properties": {
+          "name": { "type": "string" },
+          "type": { "type": "string" }
+        },
+        "additionalProperties": true
+      }
+    },
+    "return_type": { "type": "string" },
+    "body": { "$ref": "#/$defs/expr" }
+  },
+  "$defs": {
+    "expr": {
+      "type": "object",
+      "required": ["kind"],
+      "properties": {
+        "kind": {
+          "enum": [
+            "var",
+            "float",
+            "bool",
+            "let",
+            "if",
+            "lambda",
+            "apply",
+            "prim",
+            "tensor-prim"
+          ]
+        },
+        "name": { "type": "string" },
+        "type": { "type": "string" },
+        "value": {},
+        "rhs": { "$ref": "#/$defs/expr" },
+        "body": { "$ref": "#/$defs/expr" },
+        "cond": { "$ref": "#/$defs/expr" },
+        "then": { "$ref": "#/$defs/expr" },
+        "else": { "$ref": "#/$defs/expr" },
+        "params": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "type"],
+            "properties": {
+              "name": { "type": "string" },
+              "type": { "type": "string" }
+            },
+            "additionalProperties": true
+          }
+        },
+        "fn": { "$ref": "#/$defs/expr" },
+        "args": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/expr" }
+        },
+        "op": { "type": "string" }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

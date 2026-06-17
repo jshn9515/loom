@@ -1,0 +1,21 @@
+{
+  "kind": "benchmark",
+  "name": "soft_threshold",
+  "input_kind": "ocaml",
+  "source_path": "source/ocaml/soft_threshold.ml",
+  "entry": "soft_threshold",
+  "baseline_name": "soft_threshold",
+  "scalar_args": {
+    "threshold": 0.25
+  },
+  "tensor_inputs": [
+    "x"
+  ],
+  "result_kind": "tensor",
+  "description": "Elementwise shrinkage with two-sided thresholding",
+  "application": "Sparse signal processing and proximal-style optimization steps",
+  "application_domain": "scientific-computing",
+  "workload_class": "sparsity-thresholding",
+  "plot_scale_mode": "linear_and_log",
+  "capability_expected": "supported"
+}

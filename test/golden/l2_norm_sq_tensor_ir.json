@@ -1,0 +1,48 @@
+{
+  "entry_name": "l2_norm_sq",
+  "params": [ { "kind": "tensor1-f32", "name": "x", "shape_symbol": "n" } ],
+  "result": { "kind": "scalar", "value": "node_1" },
+  "nodes": [
+    {
+      "kind": "elementwise1d",
+      "id": 0,
+      "shape_symbol": "n",
+      "inputs": [ { "name": "xi", "source": "x" } ],
+      "scalar_params": [],
+      "body": {
+        "kind": "binary",
+        "op": "mul",
+        "lhs": { "kind": "var", "name": "xi" },
+        "rhs": { "kind": "var", "name": "xi" }
+      },
+      "metrics": {
+        "scalar_complexity": 1,
+        "has_branch": false,
+        "has_div": false,
+        "branch_count": 0,
+        "div_count": 0,
+        "repeated_subexpressions": 0,
+        "estimated_uses": 1
+      },
+      "handling_hint": "no-preference"
+    },
+    {
+      "kind": "reduce1d",
+      "id": 1,
+      "shape_symbol": "n",
+      "source": { "kind": "plain", "input": "node_0" },
+      "reduce_kind": "sum",
+      "metrics": {
+        "scalar_complexity": 0,
+        "has_branch": false,
+        "has_div": false,
+        "branch_count": 0,
+        "div_count": 0,
+        "repeated_subexpressions": 0,
+        "estimated_uses": 1
+      },
+      "reduction_shape": "plain",
+      "handling_hint": "no-preference"
+    }
+  ]
+}

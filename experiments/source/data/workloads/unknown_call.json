@@ -1,0 +1,9 @@
+{
+  "kind": "capability",
+  "name": "unknown_call",
+  "input_kind": "ocaml",
+  "source_path": "source/ocaml/limitations/unknown_call.ml",
+  "entry": "bad",
+  "description": "Unknown function call inside scalar lambda",
+  "capability_expected": "unsupported"
+}
