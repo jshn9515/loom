@@ -30,11 +30,11 @@ faster; red cells mean slower.
 
 **Current benchmark suite**
 
-[<img src="experiments/results/suite_summary_cuda_gap.png" alt="Suite summary: best Loom Triton and CUDA runtime gaps vs best external Triton/CUDA" width="100%">](experiments/results/public/runtime/plots/suite_summary_cuda_gap.png)
+[<img src="experiments/results/suite_summary_cuda_gap.png" alt="Suite summary: best Loom Triton and CUDA runtime gaps vs best external Triton/CUDA" width="100%">](experiments/results/suite_summary_cuda_gap.png)
 
 **Held-out generalization suite**
 
-[<img src="experiments/results/suite_summary_generalization_gap.png" alt="Generalization summary: held-out Loom backend runtime gaps vs best external Triton/CUDA" width="100%">](experiments/results/public/runtime/plots/suite_summary_generalization_gap.png)
+[<img src="experiments/results/suite_summary_generalization_gap.png" alt="Generalization summary: held-out Loom backend runtime gaps vs best external Triton/CUDA" width="100%">](experiments/results/suite_summary_generalization_gap.png)
 
 The full generated report, raw measurements, summaries, and per-kernel plots
 live under [`experiments/results/public/`](experiments/results/public/).
